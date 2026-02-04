@@ -10,6 +10,6 @@ if __name__ == '__main__':
     # epochs=5: 5 pasadas de entrenamiento 
     # imgsz=640: Tamaño de la imagen ).
     print("--- Iniciando entrenamiento de prueba ---")
-    results = model.train(data='coco8.yaml', epochs=5, imgsz=640)
+    results = model.train(data='frutas_config.yaml', epochs=50, imgsz=640)
 
     print("--- ¡Prueba finalizada con éxito! ---")
