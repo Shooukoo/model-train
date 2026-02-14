@@ -1,0 +1,2 @@
+filename,path,class,confidence,area_pixels,weight_grams,density_factor
+zarzamora_nueva_92.jpg,dataset_sanas\datasets\frutas\images\val\zarzamora_nueva_92.jpg,sano,0.8277443647384644,550.0,12.334587281176937,1.0

@@ -1,2 +1,0 @@
-filename,path,class,confidence,area_pixels,weight_grams,density_factor
-analog_sano_103_sano_1_7.jpg,dataset_dañadas/datasets/frutas/images/train/sano/analog_sano_103_sano_1_7.jpg,sano,0.9999346733093262,23648.0,28.377599999999997,0.0012

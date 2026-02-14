@@ -4,6 +4,7 @@ import math
 import os
 import random
 import sys
+import csv
 
 import cv2
 import numpy as np
@@ -270,6 +271,10 @@ def main():
         "--output", type=str, default=OUTPUT_IMG,
         help=f"Ruta de la imagen de salida (default: {OUTPUT_IMG}).",
     )
+    parser.add_argument(
+        "--csv", type=str, default=None,
+        help="Ruta del archivo CSV para guardar los resultados (opcional).",
+    )
 
     args = parser.parse_args()
 
@@ -421,6 +426,53 @@ def main():
     estado = "EN RANGO" if PESO_MIN <= peso <= PESO_MAX else "FUERA DE RANGO"
     print(f"  Estado:             {estado}")
     print("=" * 50)
+
+    # Exportar a CSV si se solicitó
+    if args.csv:
+        file_exists = os.path.isfile(args.csv)
+        
+        # Determinar clase basada en ruta
+        # Prioridad 1: Nombre de carpeta contenedora (si coincide con clases conocidas)
+        parent_dir = os.path.basename(os.path.dirname(ruta_imagen))
+        known_classes = ["antracnosis", "botrytis", "dano", "fusarium", "mildeo", "roya", "sano", "verticillium"]
+        
+        if parent_dir in known_classes:
+            clase = parent_dir
+        else:
+            # Prioridad 2: Buscar palabras clave en el nombre del archivo
+            filename_lower = os.path.basename(ruta_imagen).lower()
+            if "dañada" in filename_lower or "danada" in filename_lower:
+                clase = "dañado"
+            elif "sano" in filename_lower or "sana" in filename_lower:
+                clase = "sano"
+            else:
+                # Prioridad 3: Fallback basado en el dataset origen
+                if "dataset_sanas" in ruta_imagen:
+                     clase = "sano"
+                elif "dataset_dañadas" in ruta_imagen:
+                     clase = "dañado"
+                else: 
+                     clase = "desconocido"
+            
+        row = {
+            "filename": os.path.basename(ruta_imagen),
+            "path": ruta_imagen,
+            "class": clase,
+            "confidence": conf,
+            "area_pixels": area_px,
+            "weight_grams": peso,
+            "density_factor": args.densidad
+        }
+        
+        with open(args.csv, mode='a', newline='', encoding='utf-8') as f:
+            fieldnames = ["filename", "path", "class", "confidence", "area_pixels", "weight_grams", "density_factor"]
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            
+            if not file_exists:
+                writer.writeheader()
+            
+            writer.writerow(row)
+        print(f"Resultados guardados en CSV: {args.csv}")
 
 
 if __name__ == "__main__":
