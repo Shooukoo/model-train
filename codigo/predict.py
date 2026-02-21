@@ -2,13 +2,14 @@ from ultralytics import YOLO
 
 # Load a model
 
-model = YOLO("runs\\segment\\train2\\weights\\best.pt")  # load a custom model
+model = YOLO("runs\\segment\\train3\\weights\\best.pt")  # load a custom model
 
 # Predict with the model
 results = model.predict(
-    source=r"dataset_seg\\126.jpeg",
+    source=r"dataset_seg\\boton.jpeg",
     save=True,      # GUARDA la imagen
-    show=False      # no la abre, solo guarda
+    show=False,      # no la abre, solo guarda
+    conf=0.10,       # confidence threshold (default 0.25)
 )
 
 print("Listo. Revisa: runs/segment/predict/")
