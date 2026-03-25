@@ -2,8 +2,8 @@ from ultralytics import YOLO
 import cv2
 # Load a model
 
-model = YOLO("runs\\segment\\train6\\weights\\best.pt")  # load a custom model
-img = cv2.imread("dataset_seg\\126.jpeg")
+model = YOLO("runs\\segment\\train3\\weights\\best.pt")  # load a custom model
+img = cv2.imread("dataset_seg\\C1_Vista_General_2.jpg")
 img = cv2.resize(img, (5120, 5120))
 
 # Predict with the model
