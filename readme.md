@@ -103,3 +103,9 @@ La prueba fue un **éxito técnico**. Se validó que:
 3. El hardware es capaz de completar ciclos de entrenamiento.
 
 **Siguientes pasos:** Para subir la precisión, se requiere aumentar el tamaño del dataset (más fotos variadas) y el número de épocas de entrenamiento (mínimo 50).
+
+### Prueba de estimación de peso
+
+```bash
+python scripts/estimate_weight_v2.py --csv mis_resultados.csv --dataset sanas
+```
