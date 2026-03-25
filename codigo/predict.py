@@ -3,7 +3,7 @@ import cv2
 # Load a model
 
 model = YOLO("runs\\segment\\train3\\weights\\best.pt")  # load a custom model
-img = cv2.imread("dataset_seg\\C1_C1.jpeg")
+img = cv2.imread("dataset_seg\\126.jpeg")
 img = cv2.resize(img, (5120, 5120))
 
 # Predict with the model
@@ -16,6 +16,7 @@ results = model.predict(
 )
 
 print("Listo. Revisa: runs/segment/predict/")
+
 # Access the results
 for result in results:
     xy = result.masks.xy  # mask in polygon format

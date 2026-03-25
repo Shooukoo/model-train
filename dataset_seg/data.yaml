@@ -8,6 +8,6 @@ names: ['boton', 'flor', 'maduro', 'marron', 'naranja', 'verde', 'zarzamora']
 roboflow:
   workspace: frambuesas-8to46
   project: conteo-nuty1
-  version: 4
+  version: 5
   license: CC BY 4.0
-  url: https://universe.roboflow.com/frambuesas-8to46/conteo-nuty1/dataset/4
+  url: https://universe.roboflow.com/frambuesas-8to46/conteo-nuty1/dataset/5

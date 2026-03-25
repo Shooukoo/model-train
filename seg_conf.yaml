@@ -1,8 +1,0 @@
-path: ./dataset_seg
-train: images/train
-val: images/val
-
-nc: 1
-
-names:
-  0: "zarzamora"
