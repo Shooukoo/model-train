@@ -2,7 +2,7 @@ from ultralytics import YOLO
 import cv2
 # Load a model
 
-model = YOLO("runs\\segment\\train3\\weights\\best.pt")  # load a custom model
+model = YOLO("runs\\segment\\trains\\train6\\weights\\best.pt")  # load a custom model
 img = cv2.imread("dataset_seg\\C1_Vista_General_2.jpg")
 img = cv2.resize(img, (5120, 5120))
 
@@ -16,7 +16,8 @@ results = model.predict(
     retina_masks=False,
     show_labels=False,  # no muestra etiquetas
     show_conf=False,     # no muestra confianza
-    device='cpu'
+    device='cpu',
+    save_dir='runs/segment/predicts'
 )
 
 print("Listo. Revisa: runs/segment/predict/")
